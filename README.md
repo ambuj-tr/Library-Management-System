@@ -1,172 +1,671 @@
-# Library-Management-System
+# 📚 Library Management System
 
-# Library Management System
+### MDM TA3
 
-A full-stack web application for managing a library: add, search, edit and delete books, manage members, issue and return books, and see live statistics.
-
-**Stack (only these):** HTML5, CSS3, vanilla JavaScript (Fetch API) | Python Flask | SQLite | REST + JSON
+**Name:** Ambuj Tripathi
+**Roll No:** 05
+**Section:** B
+**Department:** ENCS
 
 ---
 
-## 1. Quick start on Windows (VS Code)
+## 📌 Project Overview
 
-Open the `library-management-system` folder in VS Code, then open a terminal (**Terminal > New Terminal**).
+The **Library Management System** is a full-stack web application designed to simplify and manage day-to-day library operations.
 
-**PowerShell**
+The system allows librarians to:
+
+* 📖 Add, search, edit and delete books
+* 👨‍🎓 Manage library members
+* 📤 Issue books
+* 📥 Return books
+* 📊 View live library statistics
+* 🔍 Search and filter books and members
+* 📋 Track complete transaction history
+* ⚠️ Monitor overdue books
+
+The application follows a **REST API-based architecture** with a Flask backend, SQLite database and a responsive vanilla JavaScript frontend.
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology       | Purpose                       |
+| ---------------- | ----------------------------- |
+| **HTML5**        | Frontend structure            |
+| **CSS3**         | Styling and responsive design |
+| **JavaScript**   | Frontend logic and Fetch API  |
+| **Python Flask** | Backend and REST API          |
+| **SQLite**       | Database                      |
+| **REST + JSON**  | Client-server communication   |
+
+> **Note:** Only HTML5, CSS3, Vanilla JavaScript, Python Flask and SQLite are used in this project.
+
+---
+
+## ✨ Features
+
+### 📊 Dashboard
+
+* Total number of books
+* Available copies
+* Currently issued copies
+* Total members
+* Overdue book warnings
+* Shelf status
+* Recently added books
+* Recent transactions
+
+### 📚 Book Management
+
+* Add new books
+* Edit existing books
+* Delete books
+* Search books by:
+
+  * Title
+  * Author
+  * ISBN
+  * Category
+* Filter by category
+* Filter by availability
+* Availability badges
+* Duplicate ISBN validation
+
+### 👥 Member Management
+
+* Add members
+* Edit members
+* Delete members
+* Search by:
+
+  * Name
+  * Email
+  * Member ID
+* Duplicate email validation
+* Email and phone number validation
+
+### 🔄 Issue & Return
+
+* Select a member
+* Select an available book
+* Set issue date
+* Set due date
+* Issue books
+* Return books
+* View currently issued books
+* Confirmation dialogs for important operations
+
+### 📋 Transaction Management
+
+* Complete transaction history
+* Filter transactions by:
+
+  * All
+  * Active Issues
+  * Returned
+* Search transaction records
+* Track issue and return information
+
+### 📱 User Experience
+
+* Loading indicators
+* Empty states
+* Success notifications
+* Error messages
+* Confirmation dialogs
+* Responsive layout for:
+
+  * Desktop
+  * Tablet
+  * Mobile
+
+---
+
+# 🚀 Quick Start
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/library-management-system.git
+cd library-management-system
+```
+
+Open the project folder in **VS Code**.
+
+---
+
+## 2. Create a Virtual Environment
+
+### PowerShell
 
 ```powershell
 python -m venv venv
 .\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python database.py
-python app.py
 ```
 
-**Command Prompt (cmd)**
+### Command Prompt
 
 ```bat
 python -m venv venv
 venv\Scripts\activate.bat
+```
+
+---
+
+## 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
+---
+
+## 4. Initialize the Database
+
+```bash
 python database.py
+```
+
+This creates the SQLite database and inserts the demo data.
+
+---
+
+## 5. Start the Flask Server
+
+```bash
 python app.py
 ```
 
-Then open **http://127.0.0.1:5000** in your browser.
+The application will be available at:
 
-What each command does:
+**http://127.0.0.1:5000**
 
-| Command | Purpose |
-|---|---|
-| `python -m venv venv` | Creates an isolated Python environment (once) |
-| `.\venv\Scripts\Activate.ps1` | Switches the terminal to that environment (every new terminal) |
-| `pip install -r requirements.txt` | Installs Flask |
-| `python database.py` | Creates `library.db` with all tables and demo data (optional: `python app.py` also does this automatically) |
-| `python app.py` | Starts the server. Press `Ctrl + C` to stop it |
+> ⚠️ Always open the application through Flask. Do not double-click `index.html`, because the frontend uses the Flask REST API through the same server.
 
-To wipe all data and go back to the demo data: `python database.py --reset`
+---
 
-> **Important:** always open the app through Flask (`http://127.0.0.1:5000`). Do not double-click `index.html`. Flask serves the page and the API from the same address, which is what lets the Fetch API calls work.
+# 🗂️ Project Structure
 
-## 2. Running the automated tests
+```text
+library-management-system/
+│
+├── app.py
+│   └── Flask application and REST API endpoints
+│
+├── database.py
+│   └── SQLite connection, schema creation and demo data
+│
+├── validators.py
+│   └── Server-side input validation
+│
+├── schema.sql
+│   └── Database table definitions
+│
+├── requirements.txt
+│   └── Python dependencies
+│
+├── test_api.py
+│   └── Automated API tests
+│
+├── library.db
+│   └── SQLite database
+│
+├── README.md
+│   └── Project documentation
+│
+├── docs/
+│   └── SUBMISSION.md
+│       └── Project explanation, architecture,
+│           test cases and viva questions
+│
+└── frontend/
+    ├── index.html
+    │   └── Page structure, forms and dialogs
+    │
+    ├── style.css
+    │   └── Application styling and responsive design
+    │
+    └── script.js
+        └── Fetch API calls, validation and UI rendering
+```
 
-```powershell
+---
+
+# 🏗️ System Architecture
+
+```text
+┌─────────────────────────────┐
+│        User / Browser       │
+│       HTML + CSS + JS       │
+└──────────────┬──────────────┘
+               │
+               │ Fetch API
+               │ REST + JSON
+               ▼
+┌─────────────────────────────┐
+│       Python Flask          │
+│       REST API Layer        │
+│                             │
+│  Books | Members | Issues   │
+│  Returns | Transactions     │
+│  Dashboard | Validation     │
+└──────────────┬──────────────┘
+               │
+               │ SQL Queries
+               ▼
+┌─────────────────────────────┐
+│          SQLite             │
+│                             │
+│  Books                      │
+│  Members                    │
+│  Transactions               │
+└─────────────────────────────┘
+```
+
+---
+
+# 🔌 REST API
+
+All API responses are returned in **JSON format**.
+
+### Success Response
+
+```json
+{
+  "success": true,
+  "message": "Operation successful",
+  "data": {}
+}
+```
+
+### Error Response
+
+```json
+{
+  "success": false,
+  "error": "Invalid input",
+  "errors": {}
+}
+```
+
+---
+
+## 📚 Books API
+
+| Method | Endpoint                      | Description         |
+| ------ | ----------------------------- | ------------------- |
+| GET    | `/api/books`                  | Get all books       |
+| GET    | `/api/books/search?q=keyword` | Search books        |
+| POST   | `/api/books`                  | Add a book          |
+| PUT    | `/api/books/<id>`             | Update a book       |
+| DELETE | `/api/books/<id>`             | Delete a book       |
+| GET    | `/api/categories`             | Get book categories |
+
+### Supported Filters
+
+```text
+q
+category
+availability
+```
+
+---
+
+## 👥 Members API
+
+| Method | Endpoint            | Description     |
+| ------ | ------------------- | --------------- |
+| GET    | `/api/members`      | Get members     |
+| POST   | `/api/members`      | Add a member    |
+| PUT    | `/api/members/<id>` | Update a member |
+| DELETE | `/api/members/<id>` | Delete a member |
+
+---
+
+## 🔄 Transaction API
+
+| Method | Endpoint                   | Description             |
+| ------ | -------------------------- | ----------------------- |
+| POST   | `/api/transactions/issue`  | Issue a book            |
+| POST   | `/api/transactions/return` | Return a book           |
+| GET    | `/api/transactions`        | Get transaction history |
+| GET    | `/api/transactions/active` | Get active issues       |
+
+---
+
+## 📊 Dashboard API
+
+| Method | Endpoint               | Description              |
+| ------ | ---------------------- | ------------------------ |
+| GET    | `/api/dashboard/stats` | Get dashboard statistics |
+
+---
+
+# 📝 Example API Requests
+
+### Add a Book
+
+```http
+POST /api/books
+```
+
+```json
+{
+  "title": "Clean Code",
+  "author": "Robert C. Martin",
+  "isbn": "9780132350884",
+  "category": "Programming",
+  "total_copies": 3
+}
+```
+
+### Issue a Book
+
+```http
+POST /api/transactions/issue
+```
+
+```json
+{
+  "member_id": 1,
+  "book_id": 2,
+  "issue_date": "2026-10-03",
+  "due_date": "2026-10-17"
+}
+```
+
+### Return a Book
+
+```http
+POST /api/transactions/return
+```
+
+```json
+{
+  "transaction_id": 5
+}
+```
+
+---
+
+# ⚙️ Business Rules
+
+The backend enforces the following rules:
+
+1. A book cannot be issued if no copies are available.
+2. The selected member must exist.
+3. The selected book must exist.
+4. The due date cannot be earlier than the issue date.
+5. Issuing a book decreases available copies by one.
+6. Issuing and transaction creation occur inside one database transaction.
+7. Returning a book increases available copies by one.
+8. A book cannot be returned twice.
+9. A book cannot be deleted while a copy is issued.
+10. A member cannot be deleted while holding a book.
+11. Books and members with transaction history cannot be deleted.
+12. Total copies cannot be less than currently issued copies.
+13. Stock can never become negative.
+14. Duplicate ISBNs are rejected.
+15. Duplicate member emails are rejected.
+16. Invalid email, phone and book information is rejected by server-side validation.
+
+---
+
+# 🧪 Testing
+
+The project includes automated API tests.
+
+Run:
+
+```bash
 python test_api.py
 ```
 
-The tests use a temporary database, so your real `library.db` is never touched. Expected result: `Ran 21 tests ... OK`.
+Expected output:
 
-## 3. Project structure
-
-```
-library-management-system/
-├── app.py            Flask app: all REST endpoints and business rules
-├── database.py       SQLite connection, schema creation, safe transactions, demo data
-├── validators.py     Server-side input validation
-├── schema.sql        CREATE TABLE statements (books, members, transactions)
-├── requirements.txt  Python dependencies (Flask)
-├── test_api.py       Automated API tests
-├── library.db        SQLite database (created automatically; demo data included)
-├── README.md         This file
-├── docs/
-│   └── SUBMISSION.md Project explanation, architecture, test cases, viva Q&A
-└── frontend/
-    ├── index.html    Page layout, forms and dialogs
-    ├── style.css     Navy / white / teal theme, responsive layout
-    └── script.js     Fetch API calls, rendering, validation
+```text
+Ran 21 tests ... OK
 ```
 
-## 4. Features
+The tests use a **temporary database**, so the actual `library.db` file is not modified.
 
-- **Dashboard:** total books, available copies, issued copies, total members, overdue warning, shelf status bar, recently added books and recent transactions. All numbers come from the backend.
-- **Books:** add, edit, delete (with confirmation), live search by title, author, ISBN or category, filters for category and availability, availability badges. Duplicate ISBNs and invalid copy counts are rejected.
-- **Members:** add, edit, delete, search by name, email or member ID. Duplicate emails and invalid email or phone formats are rejected.
-- **Issue / Return:** pick a member and an available book, set issue and due dates, see a confirmation. Return books from the "Currently issued" list (with a confirmation dialog).
-- **Transactions:** full history with filters for all, active issues and returned.
-- **Everywhere:** loading indicators, empty states, success toasts, readable error messages, and a layout that works on laptop, tablet and phone.
+---
 
-## 5. Business rules enforced by the backend
+# 🗄️ Database
 
-- A book cannot be issued when no copies are available.
-- The member and book must exist; the due date cannot be earlier than the issue date.
-- Issuing decreases available copies by one and records the transaction, in one database transaction (both happen or neither).
-- Returning increases available copies by one only the first time. A second return is rejected with `409`.
-- A book cannot be deleted while any copy is issued. A member cannot be deleted while holding a book.
-- **Design decision:** a book or member that has *any* past transaction also cannot be deleted. This keeps transaction history intact (the foreign keys would block it anyway). Books and members with no history can be deleted freely.
-- Total copies cannot be set below the number of copies currently issued.
-- Stock can never go negative (checked in code and by a `CHECK` constraint in SQLite).
+The application uses **SQLite** as its database.
 
-## 6. REST API
+Main tables:
 
-All responses are JSON. Success: `{"success": true, "message": "...", "data": ...}`. Failure: `{"success": false, "error": "...", "errors": {"field": "..."}}`.
+```text
+┌──────────────────┐
+│      books       │
+├──────────────────┤
+│ id               │
+│ title            │
+│ author           │
+│ isbn             │
+│ category         │
+│ total_copies     │
+│ available_copies │
+└──────────────────┘
 
-### Books
+┌──────────────────┐
+│     members      │
+├──────────────────┤
+│ id               │
+│ name             │
+│ email            │
+│ phone            │
+└──────────────────┘
 
-| Method | Endpoint | Description | Success | Errors |
-|---|---|---|---|---|
-| GET | `/api/books` | List all books (optional `q`, `category`, `availability` filters) | 200 | 400 |
-| GET | `/api/books/search?q=keyword` | Search by title, author, ISBN or category (also accepts `category` and `availability=available/unavailable`) | 200 | 400 |
-| POST | `/api/books` | Add a book | 201 | 400, 409 duplicate ISBN |
-| PUT | `/api/books/<id>` | Update a book | 200 | 400, 404, 409 |
-| DELETE | `/api/books/<id>` | Delete a book | 200 | 404, 409 issued or has history |
-| GET | `/api/categories` | List distinct categories (feeds the filter dropdown) | 200 | |
-
-### Members
-
-| Method | Endpoint | Description | Success | Errors |
-|---|---|---|---|---|
-| GET | `/api/members` | List members (optional `q` for name, email or ID) | 200 | |
-| POST | `/api/members` | Add a member | 201 | 400, 409 duplicate email |
-| PUT | `/api/members/<id>` | Update a member | 200 | 400, 404, 409 |
-| DELETE | `/api/members/<id>` | Delete a member | 200 | 404, 409 holds books or has history |
-
-### Issue, return and history
-
-| Method | Endpoint | Description | Success | Errors |
-|---|---|---|---|---|
-| POST | `/api/transactions/issue` | Issue a book | 201 | 400, 404, 409 no copies |
-| POST | `/api/transactions/return` | Return a book | 200 | 400, 404, 409 already returned |
-| GET | `/api/transactions` | History (optional `status=issued/returned`, `q`) | 200 | 400 |
-| GET | `/api/transactions/active` | Currently issued books (optional `q`) | 200 | |
-
-### Dashboard
-
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/dashboard/stats` | Totals, overdue count, recent books and recent transactions |
-
-### Example requests
-
-```json
-POST /api/books
-{ "title": "Clean Code", "author": "Robert C. Martin", "isbn": "9780132350884",
-  "category": "Programming", "total_copies": 3 }
-
-POST /api/transactions/issue
-{ "member_id": 1, "book_id": 2, "issue_date": "2026-10-03", "due_date": "2026-10-17" }
-
-POST /api/transactions/return
-{ "transaction_id": 5 }
+┌──────────────────┐
+│   transactions   │
+├──────────────────┤
+│ id               │
+│ member_id        │
+│ book_id          │
+│ issue_date       │
+│ due_date         │
+│ return_date      │
+│ status           │
+└──────────────────┘
 ```
 
-Status codes used: `200` OK, `201` Created, `400` invalid input, `404` record not found, `405` wrong HTTP method, `409` conflict (duplicate, no stock, already returned, blocked delete), `500` unexpected server or database error.
+---
 
-## 7. Troubleshooting
+# 🔐 Data Integrity
 
-| Problem | Fix |
-|---|---|
-| `'python' is not recognized` | Install Python from python.org and tick **Add Python to PATH**. Or try `py` instead of `python`. Restart VS Code afterwards. |
-| PowerShell says *running scripts is disabled* when activating the venv | Run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`, then activate again. Or use Command Prompt instead. |
-| `ModuleNotFoundError: No module named 'flask'` | The virtual environment is not active. Activate it (you should see `(venv)` in the prompt), then run `pip install -r requirements.txt`. |
-| `Address already in use` / port 5000 busy | Use another port. PowerShell: `$env:PORT=5001; python app.py`. cmd: `set PORT=5001` then `python app.py`. Then open `http://127.0.0.1:5001`. To find what uses 5000: `netstat -ano \| findstr :5000`. |
-| Page shows "Cannot reach the server" | Flask is not running or you opened the file directly. Start `python app.py` and use the `http://127.0.0.1:5000` address. |
-| `sqlite3.OperationalError: database is locked` | Close any SQLite viewer that has `library.db` open, then retry. |
-| Want to start over with clean demo data | Stop the server, run `python database.py --reset`, start the server again. |
-| Fonts look different | The page loads two Google Fonts. Offline, it falls back to Georgia and Segoe UI. Everything still works. |
-| Windows Firewall pop-up | Choose **Allow**; the server only listens on `127.0.0.1` (your own computer). |
+The project uses both **application-level validation** and **database constraints** to maintain data integrity.
 
-## 8. Notes
+Examples:
 
-- The demo data (16 books, 7 members, 8 transactions) is inserted only when the database is empty. One issued book is deliberately overdue so the warning appears.
-- Sample ISBNs and people are for demonstration. ISBNs are checked for format (10 or 13 digits), not for the check digit.
-- Flask runs in debug mode for development (auto-reload on code changes). Do not deploy it like this.
+* Unique ISBN
+* Unique member email
+* Valid copy counts
+* Foreign key relationships
+* Stock constraints
+* Transaction consistency
+* Safe database transactions
+
+---
+
+# 🧹 Reset Demo Database
+
+To remove existing data and restore the original demo data:
+
+```bash
+python database.py --reset
+```
+
+Then restart the Flask application:
+
+```bash
+python app.py
+```
+
+---
+
+# 🛠️ Troubleshooting
+
+### Python is not recognized
+
+Install Python and enable **Add Python to PATH** during installation.
+
+You can also try:
+
+```bash
+py
+```
+
+instead of:
+
+```bash
+python
+```
+
+---
+
+### PowerShell blocks virtual environment activation
+
+Run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+Then:
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+---
+
+### Flask is not installed
+
+Make sure the virtual environment is active:
+
+```bash
+pip install -r requirements.txt
+```
+
+You should see:
+
+```text
+(venv)
+```
+
+in the terminal.
+
+---
+
+### Port 5000 is already in use
+
+Use another port.
+
+PowerShell:
+
+```powershell
+$env:PORT=5001
+python app.py
+```
+
+Command Prompt:
+
+```bat
+set PORT=5001
+python app.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5001
+```
+
+---
+
+### Cannot reach the server
+
+Make sure Flask is running:
+
+```bash
+python app.py
+```
+
+Then access the application using:
+
+```text
+http://127.0.0.1:5000
+```
+
+Do not open `index.html` directly.
+
+---
+
+# 📌 Demo Data
+
+The project includes demonstration data:
+
+* **16 books**
+* **7 members**
+* **8 transactions**
+
+One book is intentionally configured as **overdue** so that the dashboard warning can be demonstrated.
+
+---
+
+# 📈 HTTP Status Codes
+
+| Status Code | Meaning                        |
+| ----------- | ------------------------------ |
+| `200`       | Request successful             |
+| `201`       | Resource created               |
+| `400`       | Invalid input                  |
+| `404`       | Resource not found             |
+| `405`       | HTTP method not allowed        |
+| `409`       | Conflict                       |
+| `500`       | Internal server/database error |
+
+---
+
+# 🎓 Academic Information
+
+**Project:** Library Management System
+**Assessment:** MDM TA3
+
+**Student:** Ambuj Tripathi
+**Roll No:** 05
+**Section:** B
+**Department:** ENCS
+
+**University:** Ramdeobaba University, Nagpur
+
+---
+
+# 👨‍💻 Author
+
+**Ambuj Tripathi**
+
+B.Tech — Electronics and Computer Science (ENCS)
+Ramdeobaba University, Nagpur
+
+---
+
+## ⭐ Project Highlights
+
+* Full-stack web application
+* REST API architecture
+* CRUD operations
+* SQLite database
+* Flask backend
+* Vanilla JavaScript frontend
+* Server-side validation
+* Database transactions
+* Responsive UI
+* Automated API testing
+* Real-time dashboard statistics
+
+
